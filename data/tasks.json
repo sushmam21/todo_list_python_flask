@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "task": "Reading Books",
+    "done": false
+  },
+  {
+    "task": "Roaming around the city",
+    "done": false
+  },
+  {
+    "task": "listening music",
+    "done": false
+  }
+]

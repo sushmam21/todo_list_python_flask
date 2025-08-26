@@ -8,16 +8,20 @@
 <body>
     <div class="container">
         <h1>📝 To-Do List</h1>
-        <form method="POST" action="/add">
+        <form method="POST" action="/add" class="add-form">
             <input type="text" name="task" placeholder="Enter a task..." required>
             <button type="submit">Add</button>
         </form>
 
-        <ul>
-            {% for i, task in enumerate(tasks) %}
-                <li class="{{ 'done' if task.done }}">
-                    <a href="/toggle/{{ i }}">{{ task.task }}</a>
-                    <a href="/delete/{{ i }}" class="delete">❌</a>
+        <ul class="task-list">
+            {% for task in tasks %}
+                {% set i = loop.index0 %}
+                <li class="task-item">
+                    <form method="POST" action="/toggle/{{ i }}" class="task-form">
+                        <input type="checkbox" {% if task.done %}checked{% endif %} onchange="this.form.submit()">
+                        <span class="task-text {% if task.done %}done{% endif %}">{{ task.task }}</span>
+                    </form>
+                    <a href="/delete/{{ i }}" class="delete-btn">❌</a>
                 </li>
             {% endfor %}
         </ul>
